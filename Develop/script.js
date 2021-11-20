@@ -6,18 +6,35 @@ var confirmLowerCase;
 
 // Start Password variable values: 
 // Special characters 
+
 character = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
 // Numeric characters
 number = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 // Alphabetical characters
 alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 // function to UpperCase characters
-var  alphaUpper = alpha.map(alpha => alpha.toUpperCase());
+var alphaUpper = alpha.map(alpha => alpha.toUpperCase());
 console.log(alphaUpper);
 
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+
+// Function to generate Password criteria
+function passwordCriteria() {
+  var passwordLength = parseInt(prompt("How long do you want to make your password? Choose between 8 and 128"));
+  // validation for length between 8 and 128
+  if (passwordLength === "" ||  passwordLength === null) {
+    alert("You need to enter a value!");
+  } else if (length < 8 || length > 128) {
+    var passwordLength = parseInt(prompt("You must choose between 8 & 128"));
+    console.log(passwordLength);
+    return;
+    return generatePassword();
+  }
+
+
+};
 
 // Write password to the #password input
 function writePassword() {
@@ -30,6 +47,9 @@ function writePassword() {
   passwordText.value = password;
 
 }
+
+// Question Options
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
