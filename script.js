@@ -21,20 +21,38 @@ console.log(alphaUpper);
 var generateBtn = document.querySelector("#generate");
 
 // Function to generate Password criteria
-function passwordCriteria() {
+function generateOptions() {
   var passwordLength = parseInt(prompt("How long do you want to make your password? Choose between 8 and 128"));
   // validation for length between 8 and 128
-  if (passwordLength === "" ||  passwordLength === null) {
-    alert("You need to enter a value!");
-  } else if (length < 8 || length > 128) {
-    var passwordLength = parseInt(prompt("You must choose between 8 & 128"));
-    console.log(passwordLength);
-    return;
-    return generatePassword();
+  if (passwordLength < 8 || passwordLength > 128 || !passwordLength) {
+    alert("You need to enter a valid length! Your password needs to be between 8 and 128 characters.");
+    return generateOptions();
+  } else 
+
+  var passwordIncludeSpecial = confirm("Do you want to include special characters?");
+
+  var passwordIncludeNumeric = confirm("Do you want to include numeric characters?");
+
+  var passwordIncludeLowerCase = confirm("Do you want to include lowercase characters?");
+
+  var passwordIncludeUpperCase = confirm("Do you want to include uppercase characters?");
+
+  var questionOptions = {
+    length: passwordLength,
+    specialCharacters: passwordIncludeSpecial,
+    numeric: passwordIncludeNumeric,
+    lowerCase: passwordIncludeLowerCase,
+    upperCase: passwordIncludeUpperCase
   }
 
+return questionOptions;
 
 };
+
+function generatePassword() {
+  var options = generateOptions();
+  console.log(options)
+}
 
 // Write password to the #password input
 function writePassword() {
@@ -74,3 +92,8 @@ THEN a password is generated that matches the selected criteria */
 
 /* WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page */
+  // validation for length between 8 and 128
+  // do {
+  //   passwordLength = parseInt(prompt("How long do you want to make your password? Choose between 8 and 128"))
+  //   console.log(passwordLength);
+  // } while (passwordLength < 8 || passwordLength > 128 || !passwordLength)
