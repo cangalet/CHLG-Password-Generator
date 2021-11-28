@@ -7,7 +7,7 @@ var confirmLowerCase;
 // Start Password variable values: 
 // Special characters 
 
-character = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
+character = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"];
 // Numeric characters
 number = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 // Alphabetical characters
@@ -52,6 +52,44 @@ return questionOptions;
 function generatePassword() {
   var options = generateOptions();
   console.log(options)
+
+  var passwordPool = [];
+    console.log(passwordPool)
+
+    if (options.specialCharacters) {
+        for (i = 0; i < character.length; ++i) {
+            passwordPool.push(character[i]);
+        }
+    } 
+    if (options.numeric) {
+        for (i = 0; i < number.length; ++i) {
+        passwordPool.push(number[i]);
+        }
+    }
+    if (options.lowerCase) {
+        for (i = 0; i < alpha.length; ++i) {
+        passwordPool.push(alpha[i]);
+        }
+    }
+    if (options.upperCase) {
+        for (i = 0; i < alphaUpper.length; ++i) {
+        passwordPool.push(alphaUpper[i]);
+        }
+    }
+
+    var finalPassword = [];
+
+    for (let i = 0; i < options.length; ++i) {
+        var randomPicker = Math.floor(Math.random() * Math.floor(passwordPool.length));
+         finalPassword.push(passwordPool[randomPicker])
+    }
+
+    console.log(finalPassword)
+
+    var password = finalPassword.join('');
+    console.log(password)
+
+  return password;
 }
 
 // Write password to the #password input
